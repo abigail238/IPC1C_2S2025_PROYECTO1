@@ -3,9 +3,14 @@ package proyecto1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput;
+
 public class Proyecto1 {
 
 	public static void main(String[] args) {
+		
+		
+		
 
 		/*
 		 * public String agregarProducto; public String buscarProducto; public String
@@ -93,10 +98,26 @@ public class Proyecto1 {
 
 	public static void agregarProducto() { // aqui estamo definiendo nuestos variable
 
+		int opcion= 0;
+		while (opcion  <4) {
+			
+			System.out.println("Nombre del producto");
+			System.out.println("Categoria");
+			System.out.println("Precio");
+			System.out.println("Cantidad en stock");
+			System.out.println("Codigo unico del producto");
+			
+		}
+		
+		
+		
+		
+		
 	}
 
 	public static void buscarProducto() {
 		System.out.println("Ingresa el producto");
+		
 	}
 
 	public static void eliminarProducto() {
