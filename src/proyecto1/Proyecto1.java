@@ -1,9 +1,8 @@
 package proyecto1;
 
-import java.util.InputMismatchException;
+import java.util.HashMap;
 import java.util.Scanner;
-
-import jdk.internal.org.jline.terminal.TerminalBuilder.SystemOutput;
+import java.util.TreeMap;
 
 public class Proyecto1 {
 
@@ -17,9 +16,10 @@ public class Proyecto1 {
 		 * eliminarProducto; public int registrarVenta; public double generarReportes;
 		 * public
 		 */
+		HashMap<String,Integer> inventario=new HashMap<>();
+		TreeMap<String, Integer> tree;
 
-		Scanner tienda = new Scanner(System.in);
-
+		static Scanner tienda = new Scanner(System.in);
 		tienda.useDelimiter("/n");
 
 		int opcion = 0;
@@ -44,26 +44,77 @@ public class Proyecto1 {
 
 			System.out.println("8. SALIR");
 
-			opcion = tienda.nextInt();
+			
 
 			try {
-				System.out.println("Digite una opcion");
+				
+				
+				System.out.println("Digite un opcion: ");
 				opcion = tienda.nextInt();
+				
 				String producto;
 				int stock, stockActual;
-
+				
 				switch (opcion) {
 
 				case 1:
 					agregarProducto();
+					producto = tienda.next();
+					// si ya existe ese nombre
+					if (inventario.containsKey(producto)) {
+						System.out.println("No se ha podido ingresar el producto,ya existe.");
+						
+					}else {
+						inventario.put(producto, 0);
+						System.out.println("Se ha ingresado el producto");
+					}
+					
 					break;
 
 				case 2:
 					buscarProducto();
+					System.out.println("Ingrese el nombre del producto");
+					producto =tienda.next();
+					if (inventario.containsKey(producto)) {
+						System.out.println("Digite la cantidad:");
+						stock = tienda.nextInt();					
+					// LE VAMOS A PREGUNTAR SI ESTA EN EN STOCK
+					 
+					if (stock > 0) {
+						stockActual = inventario.get(producto);
+						inventario.put(producto, stockActual + stock);
+						System.out.println("Se ha ananido " + stock + " de stock sl producto " + producto + " ." );
+				}else {
+					System.out.println("No se puede agregar un stock negativo .");
+				 }
+				}else {
+				System.out.println("No existe el producto. ");
+				}
 					break;
 
 				case 3:
 					eliminarProducto();
+					if(inventario.containsKey(producto)) {
+						System.out.println("Ingrese el producto a eliminar: ");
+						producto = tienda.next();
+						
+						if (inventario.contains) {                                         // el producto es la llave 
+							stockActual= inventario.get(producto); //estoy obteniendo el valr del maop
+							if (stockActual> stock) {
+								inventario.put(producto, stockActual - stock);    
+									
+							}else {
+								System.out.println("No hay sufciente stock a eliminar");
+							}
+						}else {
+								System.out.println("No hay podructo a eliminar");
+						}
+						
+						
+					}else {
+						System.out.println("No existe el producto");
+					}
+					
 					break;
 
 				case 4:
@@ -87,14 +138,17 @@ public class Proyecto1 {
 
 				default:
 					break;
-
 				}
-			} catch (Exception e) {
-				System.out.println("jhi");
+				
+			}catch (InputMismatchException excepcion) {  // sirve para 
+				System.out.println("");
+				System.out.println("Vuelve a intentar, solo se permiten numeros");
+				tienda.next();
 			}
-
+			
 		}
 	}
+	
 
 	public static void agregarProducto() { // aqui estamo definiendo nuestos variable
 
