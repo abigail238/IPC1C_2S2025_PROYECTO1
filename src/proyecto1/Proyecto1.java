@@ -1,26 +1,14 @@
 package proyecto1;
 
-import java.util.HashMap;
 import java.util.Scanner;
-import java.util.TreeMap;
 
 public class Proyecto1 {
 
+	public static Producto[] productos = new Producto[100];
+
 	public static void main(String[] args) {
-		
-		
-		
 
-		/*
-		 * public String agregarProducto; public String buscarProducto; public String
-		 * eliminarProducto; public int registrarVenta; public double generarReportes;
-		 * public
-		 */
-		HashMap<String,Integer> inventario=new HashMap<>();
-		TreeMap<String, Integer> tree;
-
-		static Scanner tienda = new Scanner(System.in);
-		tienda.useDelimiter("/n");
+		Scanner tienda = new Scanner(System.in);
 
 		int opcion = 0;
 
@@ -43,78 +31,26 @@ public class Proyecto1 {
 			System.out.println("7. BITACORA");
 
 			System.out.println("8. SALIR");
-
-			
-
 			try {
-				
-				
 				System.out.println("Digite un opcion: ");
 				opcion = tienda.nextInt();
-				
-				String producto;
-				int stock, stockActual;
-				
+				tienda.nextLine();
+
 				switch (opcion) {
 
 				case 1:
 					agregarProducto();
-					producto = tienda.next();
-					// si ya existe ese nombre
-					if (inventario.containsKey(producto)) {
-						System.out.println("No se ha podido ingresar el producto,ya existe.");
-						
-					}else {
-						inventario.put(producto, 0);
-						System.out.println("Se ha ingresado el producto");
-					}
-					
+
 					break;
 
 				case 2:
 					buscarProducto();
-					System.out.println("Ingrese el nombre del producto");
-					producto =tienda.next();
-					if (inventario.containsKey(producto)) {
-						System.out.println("Digite la cantidad:");
-						stock = tienda.nextInt();					
-					// LE VAMOS A PREGUNTAR SI ESTA EN EN STOCK
-					 
-					if (stock > 0) {
-						stockActual = inventario.get(producto);
-						inventario.put(producto, stockActual + stock);
-						System.out.println("Se ha ananido " + stock + " de stock sl producto " + producto + " ." );
-				}else {
-					System.out.println("No se puede agregar un stock negativo .");
-				 }
-				}else {
-				System.out.println("No existe el producto. ");
-				}
+
 					break;
 
 				case 3:
 					eliminarProducto();
-					if(inventario.containsKey(producto)) {
-						System.out.println("Ingrese el producto a eliminar: ");
-						producto = tienda.next();
-						
-						if (inventario.contains) {                                         // el producto es la llave 
-							stockActual= inventario.get(producto); //estoy obteniendo el valr del maop
-							if (stockActual> stock) {
-								inventario.put(producto, stockActual - stock);    
-									
-							}else {
-								System.out.println("No hay sufciente stock a eliminar");
-							}
-						}else {
-								System.out.println("No hay podructo a eliminar");
-						}
-						
-						
-					}else {
-						System.out.println("No existe el producto");
-					}
-					
+
 					break;
 
 				case 4:
@@ -139,39 +75,51 @@ public class Proyecto1 {
 				default:
 					break;
 				}
-				
-			}catch (InputMismatchException excepcion) {  // sirve para 
+
+			} catch (Exception e) { // sirve para
 				System.out.println("");
 				System.out.println("Vuelve a intentar, solo se permiten numeros");
 				tienda.next();
 			}
-			
+
 		}
 	}
-	
 
 	public static void agregarProducto() { // aqui estamo definiendo nuestos variable
+		System.out.println("Agrega producto");
+		String nombredelproducto = "";      //"" ESTO ES IGUAL A TEXTO VACIO
+		String categoria = "";
+		double precio = 0.0;
+		int cantidadenstock = 0;
+		String codigounicodelproducto = "";
 
-		int opcion= 0;
-		while (opcion  <4) {
-			
-			System.out.println("Nombre del producto");
-			System.out.println("Categoria");
-			System.out.println("Precio");
-			System.out.println("Cantidad en stock");
-			System.out.println("Codigo unico del producto");
-			
-		}
+		Scanner scanner = new Scanner(System.in); // cree un nuevo objato llamado scanner
+
+		System.out.println("Nombre del producto");
+		nombredelproducto = scanner.nextLine();
+		System.out.println("Categoria");
+		categoria = scanner.nextLine();
+		System.out.println("Precio");
+		precio = scanner.nextDouble();
+		System.out.println("Cantidad en stock");
+		cantidadenstock = scanner.nextInt();
+		System.out.println("Codigo unico del producto");
+		codigounicodelproducto = scanner.nextLine();
+		
+		Producto producto = new Producto();
+		producto.setNombre(nombredelproducto);
+		producto.setCategoria(categoria);
+		producto.setPrecio(precio);
+		producto.setCantidad(cantidadenstock);
+		producto.setCodigo(codigounicodelproducto);
 		
 		
-		
-		
-		
+
 	}
 
 	public static void buscarProducto() {
 		System.out.println("Ingresa el producto");
-		
+
 	}
 
 	public static void eliminarProducto() {
