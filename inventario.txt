@@ -1,0 +1,2 @@
+|Pantalon|Ropa|85.0|15
+|.asdf|asdfas|15.0|15

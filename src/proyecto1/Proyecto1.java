@@ -1,13 +1,19 @@
 package proyecto1;
 
+
+import java.io.IOException;
 import java.util.Scanner;
+
 
 public class Proyecto1 {
 
-	public static Producto[] productos = new Producto[100];
+	private static String archivo = "inventario.txt";
+	private static Inventario inv = new Inventario(100);
+	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 
+		inv.cargarDesdeArchivo(archivo);
 		Scanner tienda = new Scanner(System.in);
 
 		int opcion = 0;
@@ -85,9 +91,9 @@ public class Proyecto1 {
 		}
 	}
 
-	public static void agregarProducto() { // aqui estamo definiendo nuestos variable
+	public static void agregarProducto() throws IOException { // aqui estamo definiendo nuestos variable
 		System.out.println("Agrega producto");
-		String nombredelproducto = "";      //"" ESTO ES IGUAL A TEXTO VACIO
+		String nombredelproducto = ""; // "" ESTO ES IGUAL A TEXTO VACIO
 		String categoria = "";
 		double precio = 0.0;
 		int cantidadenstock = 0;
@@ -105,7 +111,7 @@ public class Proyecto1 {
 		cantidadenstock = scanner.nextInt();
 		System.out.println("Codigo unico del producto");
 		codigounicodelproducto = scanner.nextLine();
-		
+
 		Producto producto = new Producto();
 		producto.setNombre(nombredelproducto);
 		producto.setCategoria(categoria);
@@ -113,8 +119,27 @@ public class Proyecto1 {
 		producto.setCantidad(cantidadenstock);
 		producto.setCodigo(codigounicodelproducto);
 		
-		
+		// Vamos a validar 
+		if (precio <=0) {
+			System.out.println("El precio debe ser mayor a 0");
+			return;
+		}
+		if (cantidadenstock < 0) {
+			System.out.println("La cantidad no puede ser negativa");
+			return;
+		}
+		if (existeCodigo(codigounicodelproducto)) {
+			System.out.println("El codigo ya existe");
+			return;
+		}
 
+		inv.agregar(producto);
+		inv.guardarEnArchivo(archivo);
+	}
+
+	private static boolean existeCodigo(String codigounicodelproducto) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	public static void buscarProducto() {
@@ -140,11 +165,16 @@ public class Proyecto1 {
 	}
 
 	public static void verDatosDelEstudiante() {
+		
+		System.out.println("Estudiante");
+		System.out.println("Nombre: Lorena Abigail Arrecis Martinez");
+
+		System.out.println("Carnet: 202112134");
 
 	}
 
 	public static void bitacora() {
-
+		inv.listar();
 	}
 
 	public static void salir() {
