@@ -35,7 +35,7 @@ public class Inventario {
 		for (int i = 0; i < productos.length; i++) {
 			Producto p = productos[i];
 
-			if (p!=null && p.getCodigo().equalsIgnoreCase(codigo)) {
+			if (p != null && p.getCodigo().equalsIgnoreCase(codigo)) {
 				System.out.println("Producto encontrado");
 				System.out.println(p);
 				encontrado = true;
@@ -44,11 +44,9 @@ public class Inventario {
 		if (!encontrado) {
 			System.out.println("No se encontro ningun producto con ese codigo");
 		}
-		
+
 		return encontrado;
 	}
-		
-
 
 	public void guardarEnArchivo(String ruta) throws IOException {
 		File f = new File(ruta);
@@ -62,7 +60,7 @@ public class Inventario {
 
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta))) {
 			for (int i = 0; i < productos.length; i++) { // recorre el array
-				if(productos[i]!=null) {
+				if (productos[i] != null) {
 					bw.write(productos[i].toLinea());
 					bw.newLine();
 				}
@@ -110,7 +108,24 @@ public class Inventario {
 
 		}
 	}
+
+	public void eliminarProducto(String codigo) {
+		int eliminar = -1;
+		for (int i = 0; i < productos.length; i++) {
+			Producto p = productos[i];
+
+			if (p != null && p.getCodigo().equalsIgnoreCase(codigo)) {
+				System.out.println("Producto eliminado");
+				System.out.println(p);
+				productos[i] = null;
+				eliminar = i;
+				break;
+			}
+		} // si no existe
+		if (eliminar == -1) {
+			System.out.println("No se encontro ningun producto con ese codigo");
+		
+		}
 	
-
-
+	}
 }

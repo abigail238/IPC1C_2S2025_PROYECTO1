@@ -4,8 +4,6 @@ P003|blusa|ropa|100.0|45
 P004|Sueter|Ropa|80.0|35
 P005|calcetines|ropa|40.0|5
 P006|calzoncillos|ropa|40.5|45
-P007|gorro|ropa|10.25|5
 P008|pantaloneta|ropa|40.0|5
 P009|brazier|ropa|40.0|100
 P010|falda|ropa|40.0|89
-

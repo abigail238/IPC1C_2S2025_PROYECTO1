@@ -126,7 +126,7 @@ public class Proyecto1 {
 
 
 	public static void buscarProducto(Scanner scanner) {
-		System.out.println("Ingresa el producto");
+		System.out.println("Busqueda producto");
 
 		System.out.println("Ingrese el codigo del producto");
 		String codigo = scanner.nextLine();
@@ -135,9 +135,15 @@ public class Proyecto1 {
 
 	}
 
-	public static void eliminarProducto(Scanner scanner) {
+	public static void eliminarProducto(Scanner scanner)throws IOException {
 		System.out.println("Elimnar producto");
+		System.out.println("Ingrese el codigo del producto");
+		String codigo = scanner.nextLine();
+		System.out.println("Producto a eliminar:");
+	    
 
+		inv.eliminarProducto(codigo);
+		inv.guardarEnArchivo(archivo);
 	}
 
 	public static void generarProducto() {

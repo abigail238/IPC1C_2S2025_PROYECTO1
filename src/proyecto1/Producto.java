@@ -33,6 +33,7 @@ public class Producto {
 		return "Producto:\n" + "  Código   : " + codigo1 + "\n" + "  Nombre   : " + nombre + "\n" + "  Categoría: "
 				+ categoria + "\n" + "  Precio   : " + precio + "\n" + "  Cantidad : " + cantidad;
 	}
+	
 
 
 	public String getCodigo() {
